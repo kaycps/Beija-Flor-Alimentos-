@@ -8,5 +8,8 @@
 	<classpathentry kind="lib" path="C:/Users/kaycp/Desktop/Bibliotecas java/lib/jgoodies-looks-2.4.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/kaycp/Desktop/Bibliotecas java/lib/junit-4.6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/kaycp/Desktop/Bibliotecas java/lib/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="img/icons8-performance-de-vendas-40.png"/>
+	<classpathentry kind="lib" path="img/img_credito.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

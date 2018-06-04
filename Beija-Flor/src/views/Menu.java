@@ -66,7 +66,7 @@ public class Menu extends JFrame {
 		panel_1.setLayout(null);
 		
 		JDayChooser dayChooser = new JDayChooser();
-		dayChooser.setBounds(10, 417, 175, 133);
+		dayChooser.setBounds(10, 375, 175, 133);
 		panel_1.add(dayChooser);
 		
 		textField = new JTextField();
@@ -88,7 +88,7 @@ public class Menu extends JFrame {
 		textField_2.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\kaycp\\Downloads\\icons8-solicitar-dinheiro-48.png"));
+		lblNewLabel.setIcon(new ImageIcon(Menu.class.getResource("/icons8-solicitar-dinheiro-48.png")));
 		lblNewLabel.setBounds(260, 48, 48, 59);
 		contentPane.add(lblNewLabel);
 		
