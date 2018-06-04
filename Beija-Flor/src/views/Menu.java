@@ -93,12 +93,12 @@ public class Menu extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\kaycp\\Downloads\\icons8-iniciar-transfer\u00EAncia-de-dinheiro-48.png"));
-		label.setBounds(456, 34, 55, 66);
+		label.setIcon(new ImageIcon(Menu.class.getResource("/icons8-iniciar-transfer\u00EAncia-de-dinheiro-48.png")));
+		label.setBounds(457, 34, 54, 72);
 		contentPane.add(label);
 		
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon("C:\\Users\\kaycp\\Downloads\\icons8-performance-de-vendas-40.png"));
+		label_1.setIcon(new ImageIcon(Menu.class.getResource("/icons8-performance-de-vendas-40.png")));
 		label_1.setBounds(676, 34, 48, 66);
 		contentPane.add(label_1);
 		

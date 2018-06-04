@@ -55,7 +55,7 @@ public class Login extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\kaycp\\Desktop\\logo.png"));
+		lblNewLabel_1.setIcon(new ImageIcon(Login.class.getResource("/logo.png")));
 		lblNewLabel_1.setBounds(-11, 204, 161, 155);
 		panel.add(lblNewLabel_1);
 		
