@@ -99,7 +99,7 @@ public class FormFuncionario extends JFrame {
 		
 		JLabel lblCarteiraDeTrabalho = new JLabel("Carteira de Trabalho");
 		lblCarteiraDeTrabalho.setFont(new Font("Arial", Font.BOLD, 13));
-		lblCarteiraDeTrabalho.setBounds(121, 163, 147, 14);
+		lblCarteiraDeTrabalho.setBounds(131, 163, 147, 14);
 		contentPane.add(lblCarteiraDeTrabalho);
 		
 		JLabel lblSetor = new JLabel("Setor");
@@ -115,25 +115,25 @@ public class FormFuncionario extends JFrame {
 		JComboBox cb_DataNascimento = new JComboBox();
 		cb_DataNascimento.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 		cb_DataNascimento.setSelectedIndex(0);
-		cb_DataNascimento.setBounds(284, 81, 37, 20);
+		cb_DataNascimento.setBounds(284, 81, 46, 20);
 		contentPane.add(cb_DataNascimento);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
-		comboBox.setBounds(331, 81, 37, 20);
+		comboBox.setBounds(340, 81, 46, 20);
 		contentPane.add(comboBox);
 		
 		JLabel label = new JLabel("/");
-		label.setBounds(324, 83, 21, 17);
+		label.setBounds(334, 83, 21, 17);
 		contentPane.add(label);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960"}));
-		comboBox_1.setBounds(378, 81, 55, 20);
+		comboBox_1.setBounds(396, 81, 55, 20);
 		contentPane.add(comboBox_1);
 		
 		JLabel label_1 = new JLabel("/");
-		label_1.setBounds(372, 83, 21, 14);
+		label_1.setBounds(390, 84, 21, 14);
 		contentPane.add(label_1);
 		
 		textField = new JTextField();
@@ -142,7 +142,7 @@ public class FormFuncionario extends JFrame {
 		textField.setColumns(10);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setBounds(153, 299, 85, 23);
+		btnCadastrar.setBounds(153, 299, 96, 23);
 		contentPane.add(btnCadastrar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -161,7 +161,7 @@ public class FormFuncionario extends JFrame {
 		textField_1.setColumns(10);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(121, 188, 100, 20);
+		textField_2.setBounds(131, 188, 100, 20);
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
@@ -218,36 +218,42 @@ public class FormFuncionario extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Adicionar \r\n");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
 		btnNewButton.setBounds(481, 187, 80, 23);
 		contentPane.add(btnNewButton);
 		
 		JComboBox comboBox_7 = new JComboBox();
 		comboBox_7.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
 		comboBox_7.setSelectedIndex(0);
-		comboBox_7.setBounds(284, 188, 37, 20);
+		comboBox_7.setBounds(284, 188, 46, 20);
 		contentPane.add(comboBox_7);
 		
 		JLabel label_4 = new JLabel("/");
-		label_4.setBounds(324, 190, 21, 17);
+		label_4.setBounds(334, 190, 21, 17);
 		contentPane.add(label_4);
 		
 		JComboBox comboBox_8 = new JComboBox();
 		comboBox_8.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
-		comboBox_8.setBounds(331, 188, 37, 20);
+		comboBox_8.setBounds(340, 188, 46, 20);
 		contentPane.add(comboBox_8);
 		
 		JLabel label_5 = new JLabel("/");
-		label_5.setBounds(372, 190, 21, 14);
+		label_5.setBounds(390, 191, 21, 14);
 		contentPane.add(label_5);
 		
 		JComboBox comboBox_9 = new JComboBox();
 		comboBox_9.setModel(new DefaultComboBoxModel(new String[] {"2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030"}));
-		comboBox_9.setBounds(378, 188, 55, 20);
+		comboBox_9.setBounds(396, 188, 55, 20);
 		contentPane.add(comboBox_9);
 		
 		JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Limpeza", "Produ\u00E7\u00E3o", "Administra\u00E7\u00E3o", "Almoxarifado"}));
-		comboBox_2.setBounds(40, 188, 71, 20);
+		comboBox_2.setBounds(40, 188, 85, 20);
 		contentPane.add(comboBox_2);
 		
 		JLabel lblCep = new JLabel("CEP");

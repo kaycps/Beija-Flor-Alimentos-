@@ -4,5 +4,9 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="img"/>
 	<classpathentry kind="lib" path="C:/Users/kaycp/Desktop/BuscaCep/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kaycp/Desktop/Bibliotecas java/lib/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kaycp/Desktop/Bibliotecas java/lib/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kaycp/Desktop/Bibliotecas java/lib/junit-4.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kaycp/Desktop/Bibliotecas java/lib/jcalendar-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
