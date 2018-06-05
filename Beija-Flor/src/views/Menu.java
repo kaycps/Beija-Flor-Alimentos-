@@ -14,6 +14,9 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JMonthChooser;
+
+import Classes.funcionario;
+
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -55,6 +58,8 @@ public class Menu extends JFrame {
 	 * Create the frame.
 	 */
 	public Menu() {
+		FormFuncionario funcionario = new FormFuncionario();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
@@ -64,7 +69,7 @@ public class Menu extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(176, 224, 230));
-		panel.setBounds(200, 173, 584, 388);
+		panel.setBounds(200, 144, 584, 417);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -106,6 +111,19 @@ public class Menu extends JFrame {
 		panel_1.add(mntmNewMenuItem_4);
 		
 		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Cadastrar Funcion\u00E1rio");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				if(funcionario.isVisible()==true) {
+					
+				}else {
+					funcionario.setVisible(true);
+				}
+				
+				
+;			}
+		});
 		mntmNewMenuItem_5.setIcon(new ImageIcon(Menu.class.getResource("/icons8-mais-16.png")));
 		mntmNewMenuItem_5.setBounds(0, 138, 201, 22);
 		panel_1.add(mntmNewMenuItem_5);
