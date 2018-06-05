@@ -70,7 +70,7 @@ public class FormFuncionario extends JFrame {
 	 */
 	public FormFuncionario() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 422);
+		setBounds(300, 278, 600, 422);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -150,6 +150,12 @@ public class FormFuncionario extends JFrame {
 		contentPane.add(btnCadastrar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				dispose();
+			}
+		});
 		btnCancelar.setBounds(40, 299, 85, 23);
 		contentPane.add(btnCancelar);
 		

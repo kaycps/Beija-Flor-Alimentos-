@@ -76,6 +76,8 @@ public class Login extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+					Menu nMenu = new Menu();
+					nMenu.setVisible(true);				
 					dispose();
 					
 				
