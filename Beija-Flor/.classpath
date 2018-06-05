@@ -9,5 +9,9 @@
 	<classpathentry kind="lib" path="jgoodies-looks-2.4.1.jar"/>
 	<classpathentry kind="lib" path="junit-4.6.jar"/>
 	<classpathentry kind="lib" path="dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="imgDebito.jar"/>
+	<classpathentry kind="lib" path="imgSaldo.jar"/>
+	<classpathentry kind="lib" path="imgLogo.jar"/>
+	<classpathentry kind="lib" path="imgLogin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
