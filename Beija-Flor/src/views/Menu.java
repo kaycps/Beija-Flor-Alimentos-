@@ -146,6 +146,13 @@ public class Menu extends JFrame {
 		panel_1.add(mntmNewMenuItem_8);
 		
 		JMenuItem mntmNewMenuItem_9 = new JMenuItem("Adicionar Contato");
+		mntmNewMenuItem_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FormCliente cliente = new FormCliente();
+				cliente.setVisible(true);
+				
+			}
+		});
 		mntmNewMenuItem_9.setIcon(new ImageIcon(Menu.class.getResource("/icons8-mais-16.png")));
 		mntmNewMenuItem_9.setBounds(0, 209, 201, 22);
 		panel_1.add(mntmNewMenuItem_9);

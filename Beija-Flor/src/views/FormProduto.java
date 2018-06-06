@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class FormCliente extends JFrame {
+public class FormProduto extends JFrame {
 
 	private JPanel contentPane;
 
@@ -18,7 +18,7 @@ public class FormCliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FormCliente frame = new FormCliente();
+					FormProduto frame = new FormProduto();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,13 +30,13 @@ public class FormCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FormCliente() {
+	public FormProduto() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 278, 600, 422);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 	}
 
 }
