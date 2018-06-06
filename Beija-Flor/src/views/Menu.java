@@ -158,6 +158,12 @@ public class Menu extends JFrame {
 		panel_1.add(mntmNewMenuItem_9);
 		
 		JMenuItem mntmNewMenuItem_10 = new JMenuItem("Consultar Contato");
+		mntmNewMenuItem_10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConsultarAgenda cAgenda = new ConsultarAgenda();
+				cAgenda.setVisible(true);
+			}
+		});
 		mntmNewMenuItem_10.setIcon(new ImageIcon(Menu.class.getResource("/icons8-pesquisar-16.png")));
 		mntmNewMenuItem_10.setBounds(0, 226, 201, 22);
 		panel_1.add(mntmNewMenuItem_10);
@@ -169,6 +175,13 @@ public class Menu extends JFrame {
 		panel_1.add(mntmNewMenuItem_11);
 		
 		JMenuItem mntmNewMenuItem_12 = new JMenuItem("Cadastrar Item");
+		mntmNewMenuItem_12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				FormProduto produto = new FormProduto();
+				produto.setVisible(true);
+			}
+		});
 		mntmNewMenuItem_12.setIcon(new ImageIcon(Menu.class.getResource("/icons8-mais-16.png")));
 		mntmNewMenuItem_12.setBounds(0, 277, 201, 22);
 		panel_1.add(mntmNewMenuItem_12);
