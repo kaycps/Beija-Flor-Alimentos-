@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Classes.WebServiceCep;
+import Classes.cliente;
+import DataBase.ClienteDAO;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,15 +25,15 @@ import java.awt.event.ActionEvent;
 public class FormCliente extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField tfNome;
+	private JTextField tfTelefone;
+	private JTextField tfCNPJ;
 	private JTextField tfCEPAgenda;
 	private JTextField tfRuaAgenda;
 	private JTextField tfNumeroAgenda;
 	private JTextField tfCidadeAgenda;
 	private JTextField tfBairroAgenda;
-	private JTextField textField_3;
+	private JTextField tfProdutoFornecido;
 
 	/**
 	 * Launch the application.
@@ -70,7 +72,7 @@ public class FormCliente extends JFrame {
 		rbCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				textField_3.setEditable(false);
+				tfProdutoFornecido.setEditable(false);
 				rbFornecedor.setSelected(false);;
 				
 			}
@@ -83,7 +85,7 @@ public class FormCliente extends JFrame {
 		rbFornecedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				textField_3.setEditable(true);
+				tfProdutoFornecido.setEditable(true);
 				rbCliente.setSelected(false);
 			}
 		});
@@ -106,20 +108,20 @@ public class FormCliente extends JFrame {
 		lblCnpj.setBounds(328, 96, 48, 14);
 		contentPane.add(lblCnpj);
 		
-		textField = new JTextField();
-		textField.setBounds(22, 113, 138, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tfNome = new JTextField();
+		tfNome.setBounds(22, 113, 138, 20);
+		contentPane.add(tfNome);
+		tfNome.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(203, 113, 86, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		tfTelefone = new JTextField();
+		tfTelefone.setBounds(203, 113, 86, 20);
+		contentPane.add(tfTelefone);
+		tfTelefone.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(328, 113, 107, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		tfCNPJ = new JTextField();
+		tfCNPJ.setBounds(328, 113, 107, 20);
+		contentPane.add(tfCNPJ);
+		tfCNPJ.setColumns(10);
 		
 		JLabel label = new JLabel("CEP");
 		label.setFont(new Font("Arial", Font.BOLD, 13));
@@ -187,6 +189,22 @@ public class FormCliente extends JFrame {
 		contentPane.add(button);
 		
 		JButton button_1 = new JButton("Cadastrar");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				cliente cliente = new cliente();
+				
+				cliente.setNome(tfNome.getText());
+				cliente.setTelefone(tfTelefone.getText());
+				
+				ClienteDAO dao = new ClienteDAO();
+				
+				dao.Adicionar(cliente);			
+				
+				
+				dispose();
+			}
+		});
 		button_1.setBounds(328, 315, 96, 23);
 		contentPane.add(button_1);
 		
@@ -195,11 +213,11 @@ public class FormCliente extends JFrame {
 		lblProdutoFornecido.setBounds(22, 144, 138, 14);
 		contentPane.add(lblProdutoFornecido);
 		
-		textField_3 = new JTextField();		
-		textField_3.setEditable(false);
-		textField_3.setColumns(10);
-		textField_3.setBounds(22, 158, 138, 20);
-		contentPane.add(textField_3);
+		tfProdutoFornecido = new JTextField();		
+		tfProdutoFornecido.setEditable(false);
+		tfProdutoFornecido.setColumns(10);
+		tfProdutoFornecido.setBounds(22, 158, 138, 20);
+		contentPane.add(tfProdutoFornecido);
 		
 		
 		

@@ -6,6 +6,8 @@ public class cliente {
 	private String telefone;
 	private String endereco[];
 	private int cnpj;
+	
+	
 	public String getNome() {
 		return nome;
 	}
