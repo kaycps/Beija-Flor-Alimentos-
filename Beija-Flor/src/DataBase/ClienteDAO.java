@@ -1,8 +1,12 @@
 package DataBase;
 
+import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 
 import javax.swing.JOptionPane;
 
@@ -17,9 +21,9 @@ public class ClienteDAO {
 		this.connection = new ConnectionFactory().getConnection();		
 	}
 	
-	public void Adicionar(cliente cliente)  {
+	public void AdicionarContato(cliente cliente)  {
 		
-		String sql = "insert into funcionario" + 
+		String sql = "insert into cliente" + 
 		"(nome,telefone)" + "values(?,?)";		
 		
 		 
@@ -41,6 +45,34 @@ public class ClienteDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
+		
+		
+	}
+	
+	public  java.util.List<cliente> BuscarContato() {
+		try {
+			
+			java.util.List<cliente> clientes = new ArrayList<cliente>();
+			PreparedStatement stmt = this.connection.prepareStatement("select * from cliente");
+		    ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				cliente cliente = new cliente();
+				cliente.setNome(rs.getString("nome"));
+				cliente.setTelefone(rs.getString("telefone"));
+				
+				clientes.add(cliente);
+			}		    
+			rs.close();
+			stmt.close();
+			System.out.println("dados retornados!");
+			return clientes;
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}		
+		
 		
 		
 	}

@@ -199,7 +199,7 @@ public class FormCliente extends JFrame {
 				
 				ClienteDAO dao = new ClienteDAO();
 				
-				dao.Adicionar(cliente);			
+				dao.AdicionarContato(cliente);		
 				
 				
 				dispose();

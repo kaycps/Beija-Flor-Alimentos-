@@ -6,22 +6,28 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Color;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import Classes.cliente;
+import DataBase.ClienteDAO;
+
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Button;
 
 public class ConsultarAgenda extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
-	private JTextField textField;
+	
 
 	/**
 	 * Launch the application.
@@ -50,63 +56,54 @@ public class ConsultarAgenda extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblContatos = new JLabel("Contatos");
-		lblContatos.setForeground(new Color(0, 128, 128));
-		lblContatos.setFont(new Font("Arial", Font.BOLD, 15));
-		lblContatos.setBounds(267, 11, 64, 14);
-		contentPane.add(lblContatos);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(48, 310, 392, -131);
-		contentPane.add(scrollPane);
-		
-		table = new JTable();
-		table.setBackground(new Color(224, 255, 255));
-		table.setToolTipText("");
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-			},
-			new String[] {
-				"Tipo", "Nome", "Telefone", "Endere\u00E7o", "CNPJ", "Produto Fornecido"
-			}
-		));
-		scrollPane.setViewportView(table);
-		
-		JLabel lblNome = new JLabel("Nome :");
-		lblNome.setFont(new Font("Arial", Font.BOLD, 13));
-		lblNome.setBounds(51, 91, 46, 14);
-		contentPane.add(lblNome);
-		
-		textField = new JTextField();
-		textField.setBounds(104, 91, 123, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(267, 88, 89, 23);
-		contentPane.add(btnBuscar);
-		
-		JButton btnEditar = new JButton("Editar");
-		btnEditar.setBounds(431, 174, 89, 23);
-		contentPane.add(btnEditar);
-		
-		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.setBounds(431, 209, 89, 23);
-		contentPane.add(btnExcluir);
-		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				
 				dispose();
 			}
 		});
-		btnVoltar.setBounds(267, 336, 89, 23);
+		btnVoltar.setBounds(245, 334, 89, 23);
 		contentPane.add(btnVoltar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(77, 154, 367, 153);
+		contentPane.add(scrollPane);	
+		
+		//chamada classe Dao
+		ClienteDAO cDao = new ClienteDAO();
+		List<cliente> clientes = cDao.BuscarContato();
+		
+		//Criação da Table
+		String coluna[]= {"Nome","telefone"};
+		DefaultTableModel tableModel = new DefaultTableModel(coluna,0);
+		JTable table = new JTable(tableModel);
+		
+		//Transformando arrayList em Object
+		for(int i = 0; i<clientes.size();i++) {
+			
+			String nome = clientes.get(i).getNome();
+			String telefone = clientes.get(i).getTelefone();
+			
+			Object data[]= {nome,telefone};
+			
+			tableModel.addRow(data);
+		}			
+		
+		scrollPane.setViewportView(table);
+		
+		JLabel lblNewLabel = new JLabel("Agenda de Contatos");
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 15));
+		lblNewLabel.setBounds(245, 11, 143, 14);
+		contentPane.add(lblNewLabel);
+		
+		Button button = new Button("Editar\r\n");
+		button.setBounds(461, 174, 70, 22);
+		contentPane.add(button);
+		
+		Button button_1 = new Button("Excluir\r\n");
+		button_1.setBounds(461, 215, 70, 22);
+		contentPane.add(button_1);
+		
 	}
 }
