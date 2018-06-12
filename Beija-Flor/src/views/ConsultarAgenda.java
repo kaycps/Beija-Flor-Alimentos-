@@ -10,6 +10,10 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
+import com.mysql.cj.result.Row;
+
 import Classes.cliente;
 import DataBase.ClienteDAO;
 
@@ -17,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Vector;
 import java.awt.event.ActionEvent;
@@ -75,17 +80,19 @@ public class ConsultarAgenda extends JFrame {
 		List<cliente> clientes = cDao.BuscarContato();
 		
 		//Criação da Table
-		String coluna[]= {"Nome","telefone"};
+		String coluna[]= {"Id","Nome","telefone"};
 		DefaultTableModel tableModel = new DefaultTableModel(coluna,0);
 		JTable table = new JTable(tableModel);
 		
 		//Transformando arrayList em Object
 		for(int i = 0; i<clientes.size();i++) {
 			
+			int id = clientes.get(i).getId();
 			String nome = clientes.get(i).getNome();
 			String telefone = clientes.get(i).getTelefone();
 			
-			Object data[]= {nome,telefone};
+			
+			Object data[]= {id,nome,telefone};
 			
 			tableModel.addRow(data);
 		}			
@@ -98,12 +105,56 @@ public class ConsultarAgenda extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		Button button = new Button("Editar\r\n");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {				
+				
+				List clienteList = (List) tableModel.getDataVector().elementAt(table.getSelectedRow());				
+				
+				cliente cliente = new cliente();				
+				
+				cliente.setId((int) clienteList.get(0));
+				cliente.setNome((String)clienteList.get(1));
+				cliente.setTelefone((String)clienteList.get(2));
+				
+				
+				
+				//enviando os dados para edição
+				UpdateCliente uc =new UpdateCliente();
+				uc.editarCliente(cliente);
+				uc.setVisible(true);
+				dispose();
+				//System.out.println(""+clienteList.get(1));
+				
+			}
+		});		
+		
 		button.setBounds(461, 174, 70, 22);
 		contentPane.add(button);
 		
 		Button button_1 = new Button("Excluir\r\n");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				List clienteList = (List) tableModel.getDataVector().elementAt(table.getSelectedRow());				
+				
+				cliente cliente = new cliente();				
+				
+				cliente.setId((int) clienteList.get(0));
+				cliente.setNome((String)clienteList.get(1));
+				cliente.setTelefone((String)clienteList.get(2));
+				
+				
+				
+				//enviando os dados para edição
+				ClienteDAO cd =new ClienteDAO();
+				cd.DeletarCliente(cliente);
+				
+				dispose();
+			}
+		});
 		button_1.setBounds(461, 215, 70, 22);
-		contentPane.add(button_1);
+		contentPane.add(button_1);		
+		
 		
 	}
 }

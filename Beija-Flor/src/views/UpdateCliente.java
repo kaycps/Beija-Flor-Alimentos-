@@ -22,7 +22,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FormCliente extends JFrame {
+public class UpdateCliente extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tfNome;
@@ -53,8 +53,9 @@ public class FormCliente extends JFrame {
 
 	JRadioButton rbFornecedor = new JRadioButton("Fornecedor\r\n");
 	JRadioButton rbCliente = new JRadioButton("Cliente");
+	private JTextField tfId;
 	
-	public FormCliente() {
+	public UpdateCliente() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 278, 600, 422);
 		contentPane = new JPanel();
@@ -188,26 +189,6 @@ public class FormCliente extends JFrame {
 		button.setBounds(203, 315, 96, 23);
 		contentPane.add(button);
 		
-		JButton button_1 = new JButton("Cadastrar");
-		button_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				cliente cliente = new cliente();
-				
-				cliente.setNome(tfNome.getText());
-				cliente.setTelefone(tfTelefone.getText());
-				
-				ClienteDAO dao = new ClienteDAO();
-				
-				dao.AdicionarContato(cliente);		
-				
-				
-				dispose();
-			}
-		});
-		button_1.setBounds(328, 315, 96, 23);
-		contentPane.add(button_1);
-		
 		JLabel lblProdutoFornecido = new JLabel("Produto Fornecido");
 		lblProdutoFornecido.setFont(new Font("Arial", Font.BOLD, 13));
 		lblProdutoFornecido.setBounds(22, 144, 138, 14);
@@ -218,6 +199,41 @@ public class FormCliente extends JFrame {
 		tfProdutoFornecido.setColumns(10);
 		tfProdutoFornecido.setBounds(22, 158, 138, 20);
 		contentPane.add(tfProdutoFornecido);
+		
+		//Atualizar cliente
+		JButton btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				cliente cliente = new cliente();
+				
+				cliente.setNome(tfNome.getText());
+				cliente.setTelefone(tfTelefone.getText());
+				cliente.setId(Integer.parseInt(tfId.getText()));
+				ClienteDAO dao = new ClienteDAO();
+				
+				dao.AlterarCliente(cliente);
+				
+				dispose();
+				ConsultarAgenda consultarAgenda = new ConsultarAgenda();
+				consultarAgenda.setVisible(true);
+				
+				
+			}
+		});
+		btnAtualizar.setBounds(329, 315, 89, 23);
+		contentPane.add(btnAtualizar);
+		
+		JLabel lblNewLabel = new JLabel("ID");
+		lblNewLabel.setBounds(192, 161, 46, 14);
+		contentPane.add(lblNewLabel);
+		
+		tfId = new JTextField();
+		tfId.setEditable(false);
+		tfId.setBounds(213, 158, 37, 20);
+		contentPane.add(tfId);
+		tfId.setColumns(10);
 		
 		
 		
@@ -243,7 +259,8 @@ public class FormCliente extends JFrame {
 	public void editarCliente(cliente cliente) {
 		
 		tfNome.setText(cliente.getNome());
-		tfTelefone.setText(cliente.getTelefone());		
-		
+		tfTelefone.setText(cliente.getTelefone());
+		tfId.setText(Integer.toString(cliente.getId()));
+	
 	}
 }

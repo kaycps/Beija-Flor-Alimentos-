@@ -61,6 +61,7 @@ public class ClienteDAO {
 				cliente cliente = new cliente();
 				cliente.setNome(rs.getString("nome"));
 				cliente.setTelefone(rs.getString("telefone"));
+				cliente.setId(rs.getInt("id"));
 				
 				clientes.add(cliente);
 			}		    
@@ -73,7 +74,37 @@ public class ClienteDAO {
 			throw new RuntimeException(e);
 		}		
 		
+	}
+	
+	public void AlterarCliente(cliente cliente) {
 		
+		String sqlString = "update cliente set nome=?, telefone=? where id=?";
 		
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sqlString);
+			stmt.setString(1, cliente.getNome());
+			stmt.setString(2, cliente.getTelefone());
+			stmt.setInt(3, cliente.getId());
+			stmt.execute();
+			stmt.close();
+			JOptionPane.showMessageDialog(null, "Dados Atualizados com sucesso!");
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void DeletarCliente (cliente cliente) {
+		
+		try {
+			PreparedStatement stmt  = connection.prepareStatement("delete from cliente where id=?");
+			stmt.setInt(1, cliente.getId());
+			stmt.execute();
+			stmt.close();
+			
+			JOptionPane.showMessageDialog(null, "Clinte deletado com sucesso!");
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }
