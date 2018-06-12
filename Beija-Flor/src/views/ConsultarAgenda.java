@@ -150,6 +150,8 @@ public class ConsultarAgenda extends JFrame {
 				cd.DeletarCliente(cliente);
 				
 				dispose();
+				ConsultarAgenda consultarAgenda = new ConsultarAgenda();
+				consultarAgenda.setVisible(true);
 			}
 		});
 		button_1.setBounds(461, 215, 70, 22);
