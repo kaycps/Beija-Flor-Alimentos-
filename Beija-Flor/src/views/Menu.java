@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
 import java.awt.Font;
 import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JMonthChooser;
@@ -30,6 +32,7 @@ import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class Menu extends JFrame {
 
@@ -178,8 +181,21 @@ public class Menu extends JFrame {
 		mntmNewMenuItem_12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				FormProduto produto = new FormProduto();
-				produto.setVisible(true);
+				UIManager.put("OptionPane.cancelButtonText", "Cancelar");
+				UIManager.put("OptionPane.noButtonText", "Materia-Prima");
+				UIManager.put("OptionPane.yesButtonText", "Manufaturado");			
+				
+				
+				int i = JOptionPane.showConfirmDialog(null, "Escolha uma Opção:", "Tipo",1);
+				
+				if(i==JOptionPane.YES_OPTION) {
+					FormProduto produto = new FormProduto();
+					produto.setVisible(true);
+				}else if(i==JOptionPane.NO_OPTION) {
+					FormProdutoManufaturado pm = new FormProdutoManufaturado();
+					pm.setVisible(true);
+				}
+				
 			}
 		});
 		mntmNewMenuItem_12.setIcon(new ImageIcon(Menu.class.getResource("/icons8-mais-16.png")));
