@@ -3,10 +3,11 @@ package Classes;
 public class cliente {
 	
 	private String nome;
-	private String telefone;
-	private String endereco[];
-	private int cnpj;
+	private String telefone;	
+	private String cnpj;
 	private int id;
+	private endereco endereco;
+	private String tipo;
 	
 	
 	public int getId() {
@@ -27,17 +28,24 @@ public class cliente {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public String[] getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(String[] endereco) {
-		this.endereco = endereco;
-	}
-	public int getCnpj() {
+	
+	public String getCnpj() {
 		return cnpj;
 	}
-	public void setCnpj(int cnpj) {
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
+	}
+	public endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(endereco endereco) {
+		this.endereco = endereco;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	
 		

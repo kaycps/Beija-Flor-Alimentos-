@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import Classes.cliente;
+import Classes.endereco;
 
 public class ClienteDAO {
 	
@@ -24,22 +25,27 @@ public class ClienteDAO {
 	public void AdicionarContato(cliente cliente)  {
 		
 		String sql = "insert into cliente" + 
-		"(nome,telefone)" + "values(?,?)";		
-		
+		"(nome,telefone,cnpj,tipo,endereco_id_endereco)" + "values(?,?,?,?,?)";	
 		 
-		try {
+		try {		
 			
-			//prepara o statement para inserção 
-			PreparedStatement	stmt = connection.prepareStatement(sql);
+			//prepara o statement para inserção 			
+			PreparedStatement	stmt = connection.prepareStatement(sql);		
+			
 			
 			//seta os valores
 			stmt.setString(1, cliente.getNome());
 			stmt.setString(2, cliente.getTelefone());
-			
-			//executa
+			stmt.setString(3, cliente.getCnpj());
+			stmt.setString(4, cliente.getTipo());
+			stmt.setInt(5, cliente.getEndereco().getId());
 			stmt.execute();
+			
+			
+			//executa				
+			stmt.close();			
 			JOptionPane.showMessageDialog(null, "Cadatrado com sucesso!");
-			stmt.close();
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

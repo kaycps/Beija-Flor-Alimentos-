@@ -114,8 +114,7 @@ public class ConsultarAgenda extends JFrame {
 				
 				cliente.setId((int) clienteList.get(0));
 				cliente.setNome((String)clienteList.get(1));
-				cliente.setTelefone((String)clienteList.get(2));
-				
+				cliente.setTelefone((String)clienteList.get(2));			
 				
 				
 				//enviando os dados para edição
@@ -141,8 +140,7 @@ public class ConsultarAgenda extends JFrame {
 				
 				cliente.setId((int) clienteList.get(0));
 				cliente.setNome((String)clienteList.get(1));
-				cliente.setTelefone((String)clienteList.get(2));
-				
+				cliente.setTelefone((String)clienteList.get(2));				
 				
 				
 				//enviando os dados para edição

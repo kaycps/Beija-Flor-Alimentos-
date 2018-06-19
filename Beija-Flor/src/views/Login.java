@@ -2,14 +2,20 @@ package views;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import Classes.login;
+import DataBase.LogimDAO;
+
 import java.awt.SystemColor;
 import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
@@ -74,12 +80,23 @@ public class Login extends JFrame {
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-					Menu nMenu = new Menu();
-					nMenu.setVisible(true);				
-					dispose();
-					
+			public void actionPerformed(ActionEvent arg0) {				
+						
+				char [] senha = passwordField.getPassword();
+						login login = new login();
+						LogimDAO logimDAO = new LogimDAO();
+						
+						login.setSenha(String.valueOf(senha));
+						login.setUsuario(textField.getText());					
+						
+						
+						if(logimDAO.VerificarLogin(login)==true) {
+							Menu nMenu = new Menu();
+							nMenu.setVisible(true);				
+							dispose();
+						}else {
+							JOptionPane.showMessageDialog(null, "Usuario não cadastrado");
+						}							
 				
 			}
 		});

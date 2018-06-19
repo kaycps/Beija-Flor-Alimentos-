@@ -4,9 +4,12 @@ public class forcenedor {
 	
 	private String nome;
 	private String telefone;
-	private int cnpj;
-	private String endereco[];
+	private String cnpj;	
 	private String produtoFornceido;
+	private int id;
+	private endereco endereco;
+	
+	
 	public String getNome() {
 		return nome;
 	}
@@ -19,23 +22,30 @@ public class forcenedor {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public int getCnpj() {
+	public String getCnpj() {
 		return cnpj;
 	}
-	public void setCnpj(int cnpj) {
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	public String[] getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(String[] endereco) {
-		this.endereco = endereco;
-	}
+	
 	public String getProdutoFornceido() {
 		return produtoFornceido;
 	}
 	public void setProdutoFornceido(String produtoFornceido) {
 		this.produtoFornceido = produtoFornceido;
+	}
+	public endereco getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(endereco endereco) {
+		this.endereco = endereco;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	

@@ -1,5 +1,6 @@
 package Classes;
 
+
 public class funcionario {
 	
 	private String nome;
@@ -8,8 +9,10 @@ public class funcionario {
 	private String dataNascimento;
 	private String dataContratacao;
 	private String setor;
-	private String endereco[];
+	private String telefone;
 	private double salario;
+	private endereco endereco;
+	private int id;
 	
 	
 	
@@ -55,12 +58,25 @@ public class funcionario {
 	public void setSetor(String setor) {
 		this.setor = setor;
 	}
-	public String[] getEndereco() {
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	public endereco getEndereco() {
 		return endereco;
 	}
-	public void setEndereco(String[] endereco) {
+	public void setEndereco(endereco endereco) {
 		this.endereco = endereco;
 	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 
 	
 }
