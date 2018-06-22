@@ -12,7 +12,9 @@ public class funcionario {
 	private String telefone;
 	private double salario;
 	private endereco endereco;
+	private String sexo;
 	private int id;
+	
 	
 	
 	
@@ -75,6 +77,12 @@ public class funcionario {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getSexo() {
+		return sexo;
+	}
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 	
 

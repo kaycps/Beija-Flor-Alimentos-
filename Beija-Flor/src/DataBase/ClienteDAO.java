@@ -15,6 +15,7 @@ import Classes.endereco;
 
 public class ClienteDAO {
 	
+	EnderecoDAO eDao = new EnderecoDAO();
 	private Connection connection; 
 	
 	public ClienteDAO() {
@@ -25,8 +26,9 @@ public class ClienteDAO {
 	public void AdicionarContato(cliente cliente)  {
 		
 		String sql = "insert into cliente" + 
-		"(nome,telefone,cnpj,tipo,endereco_id_endereco)" + "values(?,?,?,?,?)";	
+		"(nome,telefone,cnpj,tipo,id_endereco)" + "values(?,?,?,?,?)";	
 		 
+	
 		try {		
 			
 			//prepara o statement para inserção 			
@@ -38,7 +40,7 @@ public class ClienteDAO {
 			stmt.setString(2, cliente.getTelefone());
 			stmt.setString(3, cliente.getCnpj());
 			stmt.setString(4, cliente.getTipo());
-			stmt.setInt(5, cliente.getEndereco().getId());
+			stmt.setInt(5, eDao.TotalEnderecos());
 			stmt.execute();
 			
 			

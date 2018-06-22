@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.omg.CORBA.PRIVATE_MEMBER;
+
 import Classes.WebServiceCep;
 import Classes.cliente;
 import Classes.endereco;
@@ -22,6 +24,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -174,6 +177,9 @@ public class FormCliente extends JFrame {
 				cliente cliente = new cliente();
 				endereco endereco = new endereco();
 				
+				EnderecoDAO eDao = new EnderecoDAO();
+				ClienteDAO dao = new ClienteDAO();
+				
 				//SetCliente
 				cliente.setNome(tfNome.getText());
 				cliente.setTelefone(tfTelefone.getText());
@@ -184,16 +190,19 @@ public class FormCliente extends JFrame {
 				endereco.setCidade(tfCidadeAgenda.getText());
 				endereco.setCep(tfCEPAgenda.getText());
 				endereco.setRua(tfRuaAgenda.getText());
-				endereco.setNumero(tfNumeroAgenda.getText());
-				//setEndereço_Cliente
-				cliente.setEndereco(endereco);
-				
-				EnderecoDAO eDao = new EnderecoDAO();
-				ClienteDAO dao = new ClienteDAO();
+				endereco.setNumero(tfNumeroAgenda.getText());				
 				
 				eDao.AdicionarEndereco(endereco);
-				dao.AdicionarContato(cliente);	
 				
+				/*try {
+					endereco.setId(eDao.TotalEnderecos());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	*/			
+				//setEndereço_Cliente
+				//cliente.setEndereco(endereco);	
+				dao.AdicionarContato(cliente);
 				
 				dispose();
 			}
