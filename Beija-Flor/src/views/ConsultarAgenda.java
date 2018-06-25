@@ -15,7 +15,9 @@ import org.omg.CORBA.PUBLIC_MEMBER;
 import com.mysql.cj.result.Row;
 
 import Classes.cliente;
+import Classes.endereco;
 import DataBase.ClienteDAO;
+import DataBase.EnderecoDAO;
 
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -76,11 +78,12 @@ public class ConsultarAgenda extends JFrame {
 		contentPane.add(scrollPane);	
 		
 		//chamada classe Dao
-		ClienteDAO cDao = new ClienteDAO();
+		ClienteDAO cDao = new ClienteDAO();		
+		
 		List<cliente> clientes = cDao.BuscarContato();
 		
 		//Criação da Table
-		String coluna[]= {"Id","Nome","telefone"};
+		String coluna[]= {"Id","Nome","Telefone","Cnpj","Endereco_id"};
 		DefaultTableModel tableModel = new DefaultTableModel(coluna,0);
 		JTable table = new JTable(tableModel);
 		
@@ -89,13 +92,17 @@ public class ConsultarAgenda extends JFrame {
 			
 			int id = clientes.get(i).getId();
 			String nome = clientes.get(i).getNome();
-			String telefone = clientes.get(i).getTelefone();
+			String telefone = clientes.get(i).getTelefone();			
+			String cnpj = clientes.get(i).getCnpj();
+			int id_endereco = clientes.get(i).getId_endereco();
 			
-			
-			Object data[]= {id,nome,telefone};
-			
+			Object data[]= {id,nome,telefone,cnpj,id_endereco};			
 			tableModel.addRow(data);
-		}			
+		}	
+		
+		
+		
+		
 		
 		scrollPane.setViewportView(table);
 		
@@ -110,11 +117,15 @@ public class ConsultarAgenda extends JFrame {
 				
 				List clienteList = (List) tableModel.getDataVector().elementAt(table.getSelectedRow());				
 				
-				cliente cliente = new cliente();				
+				cliente cliente = new cliente();
+				
 				
 				cliente.setId((int) clienteList.get(0));
 				cliente.setNome((String)clienteList.get(1));
-				cliente.setTelefone((String)clienteList.get(2));			
+				cliente.setTelefone((String)clienteList.get(2));				
+				cliente.setCnpj((String)clienteList.get(3));
+				cliente.setId_endereco((int)clienteList.get(4));
+				
 				
 				
 				//enviando os dados para edição
@@ -122,7 +133,7 @@ public class ConsultarAgenda extends JFrame {
 				uc.editarCliente(cliente);
 				uc.setVisible(true);
 				dispose();
-				//System.out.println(""+clienteList.get(1));
+				
 				
 			}
 		});		

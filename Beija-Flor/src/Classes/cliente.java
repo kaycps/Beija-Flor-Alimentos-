@@ -8,6 +8,7 @@ public class cliente {
 	private int id;
 	private endereco endereco;
 	private String tipo;
+	private int id_endereco;
 	
 	
 	public int getId() {
@@ -46,6 +47,12 @@ public class cliente {
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	public int getId_endereco() {
+		return id_endereco;
+	}
+	public void setId_endereco(int id_endereco) {
+		this.id_endereco = id_endereco;
 	}
 	
 		

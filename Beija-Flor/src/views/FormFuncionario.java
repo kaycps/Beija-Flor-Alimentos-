@@ -148,7 +148,7 @@ public class FormFuncionario extends JFrame {
 				funcionario.setCarteiraTrabalho(tf_CarteiraTrabalho.getText());
 				funcionario.setCpf(tf_Cpf.getText());
 				funcionario.setDataNascimento(data_Nasc.getDateFormatString());
-				funcionario.setDataContratacao(data_Contrat.getCalendarButton().getText());
+				//funcionario.setDataContratacao(data_Contrat.getJCalendar());
 				funcionario.setSalario(Double.parseDouble(tf_Salario.getText()));
 				funcionario.setTelefone(tf_Telefone.getText());
 				funcionario.setSetor((String)cb_Setor.getSelectedItem());

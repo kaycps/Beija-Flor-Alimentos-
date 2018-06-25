@@ -194,14 +194,7 @@ public class FormCliente extends JFrame {
 				
 				eDao.AdicionarEndereco(endereco);
 				
-				/*try {
-					endereco.setId(eDao.TotalEnderecos());
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}	*/			
-				//setEndereço_Cliente
-				//cliente.setEndereco(endereco);	
+					
 				dao.AdicionarContato(cliente);
 				
 				dispose();

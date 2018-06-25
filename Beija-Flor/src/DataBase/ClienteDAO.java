@@ -69,7 +69,9 @@ public class ClienteDAO {
 				cliente cliente = new cliente();
 				cliente.setNome(rs.getString("nome"));
 				cliente.setTelefone(rs.getString("telefone"));
-				cliente.setId(rs.getInt("id"));
+				cliente.setId(rs.getInt("idcliente"));
+				cliente.setId_endereco(rs.getInt("id_endereco"));
+				cliente.setCnpj(rs.getString("cnpj"));
 				
 				clientes.add(cliente);
 			}		    
@@ -86,13 +88,14 @@ public class ClienteDAO {
 	
 	public void AlterarCliente(cliente cliente) {
 		
-		String sqlString = "update cliente set nome=?, telefone=? where id=?";
+		String sqlString = "update cliente set nome=?, telefone=?, cnpj=?, where id=?";
 		
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sqlString);
 			stmt.setString(1, cliente.getNome());
 			stmt.setString(2, cliente.getTelefone());
-			stmt.setInt(3, cliente.getId());
+			stmt.setString(3, cliente.getCnpj());
+			stmt.setInt(4, cliente.getId());
 			stmt.execute();
 			stmt.close();
 			JOptionPane.showMessageDialog(null, "Dados Atualizados com sucesso!");
@@ -105,7 +108,7 @@ public class ClienteDAO {
 	public void DeletarCliente (cliente cliente) {
 		
 		try {
-			PreparedStatement stmt  = connection.prepareStatement("delete from cliente where id=?");
+			PreparedStatement stmt  = connection.prepareStatement("delete from cliente where idcliente=?");
 			stmt.setInt(1, cliente.getId());
 			stmt.execute();
 			stmt.close();

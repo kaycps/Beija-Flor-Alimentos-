@@ -9,7 +9,9 @@ import javax.swing.border.EmptyBorder;
 
 import Classes.WebServiceCep;
 import Classes.cliente;
+import Classes.endereco;
 import DataBase.ClienteDAO;
+import DataBase.EnderecoDAO;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -20,6 +22,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class UpdateCliente extends JFrame {
@@ -33,7 +36,6 @@ public class UpdateCliente extends JFrame {
 	private JTextField tfNumeroAgenda;
 	private JTextField tfCidadeAgenda;
 	private JTextField tfBairroAgenda;
-	private JTextField tfProdutoFornecido;
 
 	/**
 	 * Launch the application.
@@ -50,9 +52,6 @@ public class UpdateCliente extends JFrame {
 			}
 		});
 	}
-
-	JRadioButton rbFornecedor = new JRadioButton("Fornecedor\r\n");
-	JRadioButton rbCliente = new JRadioButton("Cliente");
 	private JTextField tfId;
 	
 	public UpdateCliente() {
@@ -69,58 +68,33 @@ public class UpdateCliente extends JFrame {
 		lblAgenda.setBounds(273, 11, 73, 14);
 		contentPane.add(lblAgenda);
 		
-		
-		rbCliente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				tfProdutoFornecido.setEditable(false);
-				rbFornecedor.setSelected(false);;
-				
-			}
-		});
-		rbCliente.setFont(new Font("Arial", Font.BOLD, 13));
-		rbCliente.setBounds(129, 54, 109, 23);
-		contentPane.add(rbCliente);
-		
-		
-		rbFornecedor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				tfProdutoFornecido.setEditable(true);
-				rbCliente.setSelected(false);
-			}
-		});
-		rbFornecedor.setFont(new Font("Arial", Font.BOLD, 13));
-		rbFornecedor.setBounds(383, 54, 109, 23);
-		contentPane.add(rbFornecedor);
-		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setFont(new Font("Arial", Font.BOLD, 13));
-		lblNome.setBounds(22, 96, 48, 14);
+		lblNome.setBounds(108, 113, 48, 14);
 		contentPane.add(lblNome);
 		
 		JLabel lblTelefone = new JLabel("Telefone");
 		lblTelefone.setFont(new Font("Arial", Font.BOLD, 13));
-		lblTelefone.setBounds(203, 96, 73, 14);
+		lblTelefone.setBounds(289, 113, 73, 14);
 		contentPane.add(lblTelefone);
 		
 		JLabel lblCnpj = new JLabel("CNPJ");
 		lblCnpj.setFont(new Font("Arial", Font.BOLD, 13));
-		lblCnpj.setBounds(328, 96, 48, 14);
+		lblCnpj.setBounds(414, 113, 48, 14);
 		contentPane.add(lblCnpj);
 		
 		tfNome = new JTextField();
-		tfNome.setBounds(22, 113, 138, 20);
+		tfNome.setBounds(108, 130, 138, 20);
 		contentPane.add(tfNome);
 		tfNome.setColumns(10);
 		
 		tfTelefone = new JTextField();
-		tfTelefone.setBounds(203, 113, 86, 20);
+		tfTelefone.setBounds(289, 130, 86, 20);
 		contentPane.add(tfTelefone);
 		tfTelefone.setColumns(10);
 		
 		tfCNPJ = new JTextField();
-		tfCNPJ.setBounds(328, 113, 107, 20);
+		tfCNPJ.setBounds(414, 130, 107, 20);
 		contentPane.add(tfCNPJ);
 		tfCNPJ.setColumns(10);
 		
@@ -186,19 +160,8 @@ public class UpdateCliente extends JFrame {
 				dispose();
 			}
 		});
-		button.setBounds(203, 315, 96, 23);
+		button.setBounds(189, 314, 96, 23);
 		contentPane.add(button);
-		
-		JLabel lblProdutoFornecido = new JLabel("Produto Fornecido");
-		lblProdutoFornecido.setFont(new Font("Arial", Font.BOLD, 13));
-		lblProdutoFornecido.setBounds(22, 144, 138, 14);
-		contentPane.add(lblProdutoFornecido);
-		
-		tfProdutoFornecido = new JTextField();		
-		tfProdutoFornecido.setEditable(false);
-		tfProdutoFornecido.setColumns(10);
-		tfProdutoFornecido.setBounds(22, 158, 138, 20);
-		contentPane.add(tfProdutoFornecido);
 		
 		//Atualizar cliente
 		JButton btnAtualizar = new JButton("Atualizar");
@@ -207,6 +170,7 @@ public class UpdateCliente extends JFrame {
 				
 				
 				cliente cliente = new cliente();
+				endereco endereco = new endereco();
 				
 				cliente.setNome(tfNome.getText());
 				cliente.setTelefone(tfTelefone.getText());
@@ -222,16 +186,16 @@ public class UpdateCliente extends JFrame {
 				
 			}
 		});
-		btnAtualizar.setBounds(329, 315, 89, 23);
+		btnAtualizar.setBounds(315, 314, 89, 23);
 		contentPane.add(btnAtualizar);
 		
 		JLabel lblNewLabel = new JLabel("ID");
-		lblNewLabel.setBounds(192, 161, 46, 14);
+		lblNewLabel.setBounds(24, 114, 46, 14);
 		contentPane.add(lblNewLabel);
 		
 		tfId = new JTextField();
 		tfId.setEditable(false);
-		tfId.setBounds(213, 158, 37, 20);
+		tfId.setBounds(24, 130, 37, 20);
 		contentPane.add(tfId);
 		tfId.setColumns(10);
 		
@@ -258,9 +222,25 @@ public class UpdateCliente extends JFrame {
 	
 	public void editarCliente(cliente cliente) {
 		
+		EnderecoDAO eDao = new EnderecoDAO();
+		
+		
+		List<endereco> enderecos=eDao.BuscarEnderecoId(cliente.getId_endereco());
+		
+		System.out.println(""+enderecos);
+		
 		tfNome.setText(cliente.getNome());
 		tfTelefone.setText(cliente.getTelefone());
 		tfId.setText(Integer.toString(cliente.getId()));
-	
+		tfCNPJ.setText(cliente.getCnpj());
+		
+		tfBairroAgenda.setText(enderecos.get(0).getBairro());
+		tfCEPAgenda.setText(enderecos.get(0).getCep());
+		tfCidadeAgenda.setText(enderecos.get(0).getCidade());
+		tfNumeroAgenda.setText(enderecos.get(0).getNumero());
+		tfRuaAgenda.setText(enderecos.get(0).getRua());
+		System.out.println("id_endereco : "+cliente.getId_endereco());
+		
 	}
+	
 }
