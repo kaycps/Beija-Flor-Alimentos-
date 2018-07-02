@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Classes.materiaPrima;
+import DataBase.MateriaPrimaDAO;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
@@ -15,13 +19,16 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FormProduto extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField tfNome;
+	private JTextField tfOrigem;
+	private JTextField tfQuantidade;
+	JTextArea taArea = new JTextArea();
 
 	/**
 	 * Launch the application.
@@ -76,26 +83,47 @@ public class FormProduto extends JFrame {
 		lblDescrio.setBounds(286, 82, 63, 14);
 		contentPane.add(lblDescrio);
 
-		textField = new JTextField();
-		textField.setBounds(37, 104, 86, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tfNome = new JTextField();
+		tfNome.setBounds(37, 104, 86, 20);
+		contentPane.add(tfNome);
+		tfNome.setColumns(10);
 
-		textField_1 = new JTextField();
-		textField_1.setBounds(160, 104, 86, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		tfOrigem = new JTextField();
+		tfOrigem.setBounds(160, 104, 86, 20);
+		contentPane.add(tfOrigem);
+		tfOrigem.setColumns(10);
 
-		textField_2 = new JTextField();
-		textField_2.setBounds(37, 160, 46, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		tfQuantidade = new JTextField();
+		tfQuantidade.setBounds(37, 160, 46, 20);
+		contentPane.add(tfQuantidade);
+		tfQuantidade.setColumns(10);
 
 		JButton btnNewButton = new JButton("Cadastrar\r\n");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				materiaPrima materiaPrima = new materiaPrima();
+				MateriaPrimaDAO mDao = new MateriaPrimaDAO();
+				
+				materiaPrima.setDescricao(taArea.getText());
+				materiaPrima.setNome(tfNome.getText());
+				materiaPrima.setOrigem(tfOrigem.getText());
+				materiaPrima.setQuantidade(Integer.valueOf(tfQuantidade.getText()));
+				
+				mDao.AdicionarMateriaPrima(materiaPrima);
+				dispose();
+			}
+		});
 		btnNewButton.setBounds(168, 282, 100, 23);
 		contentPane.add(btnNewButton);
 
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				dispose();
+			}
+		});
 		btnCancelar.setBounds(316, 282, 100, 23);
 		contentPane.add(btnCancelar);
 
@@ -103,7 +131,13 @@ public class FormProduto extends JFrame {
 		scrollPane.setBounds(286, 99, 256, 105);
 		contentPane.add(scrollPane);
 
-		JTextArea textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
+		
+		scrollPane.setViewportView(taArea);
+		
+		JLabel lblMateriaprima = new JLabel("Materia-Prima");
+		lblMateriaprima.setForeground(new Color(32, 178, 170));
+		lblMateriaprima.setFont(new Font("Arial", Font.BOLD, 11));
+		lblMateriaprima.setBounds(253, 36, 86, 14);
+		contentPane.add(lblMateriaprima);
 	}
 }

@@ -74,7 +74,7 @@ public class ConsultarAgenda extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(77, 154, 367, 153);
+		scrollPane.setBounds(77, 154, 367, 85);
 		contentPane.add(scrollPane);	
 		
 		//chamada classe Dao

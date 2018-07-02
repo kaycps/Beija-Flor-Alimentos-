@@ -18,6 +18,8 @@ import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JMonthChooser;
 
 import Classes.funcionario;
+import Classes.materiaPrima;
+import DataBase.MateriaPrimaDAO;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
@@ -75,6 +77,11 @@ public class Menu extends JFrame {
 		panel.setBounds(200, 144, 584, 417);
 		contentPane.add(panel);
 		panel.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setIcon(new ImageIcon(Menu.class.getResource("/logo.png")));
+		lblNewLabel_1.setBounds(180, 140, 185, 137);
+		panel.add(lblNewLabel_1);
 		
 		
 		JPanel panel_1 = new JPanel();
@@ -189,11 +196,12 @@ public class Menu extends JFrame {
 				int i = JOptionPane.showConfirmDialog(null, "Escolha uma Opção:", "Tipo",1);
 				
 				if(i==JOptionPane.YES_OPTION) {
-					FormProduto produto = new FormProduto();
-					produto.setVisible(true);
-				}else if(i==JOptionPane.NO_OPTION) {
 					FormProdutoManufaturado pm = new FormProdutoManufaturado();
 					pm.setVisible(true);
+				}else if(i==JOptionPane.NO_OPTION) {
+					
+					FormProduto produto = new FormProduto();
+					produto.setVisible(true);
 				}
 				
 			}
@@ -203,12 +211,23 @@ public class Menu extends JFrame {
 		panel_1.add(mntmNewMenuItem_12);
 		
 		JMenuItem mntmNewMenuItem_13 = new JMenuItem("Consultar Estoque\r\n");
+		mntmNewMenuItem_13.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {			
+				
+				ConsultarMateriaPrima cMateriaPrima = new ConsultarMateriaPrima();
+				cMateriaPrima.setVisible(true);
+				
+				
+			}
+		});
 		mntmNewMenuItem_13.setIcon(new ImageIcon(Menu.class.getResource("/icons8-pesquisar-16.png")));
 		mntmNewMenuItem_13.setBounds(0, 297, 201, 22);
 		panel_1.add(mntmNewMenuItem_13);
 		mntmNewMenuItem.addActionListener(new ActionListener() {
+			FormVenda venda = new FormVenda();
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();
+				
+				venda.setVisible(true);
 			}
 		});
 		

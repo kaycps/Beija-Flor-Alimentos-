@@ -2,9 +2,9 @@ package Classes;
 
 public class login {
 	
-	private String usuario;
-	private String senha;
-	private int id;
+	private static String usuario;
+	private static String senha;
+	private static int id;
 	
 	
 	
