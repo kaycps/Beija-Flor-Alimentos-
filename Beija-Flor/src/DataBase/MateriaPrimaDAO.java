@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import Classes.endereco;
 import Classes.materiaPrima;
 
 
@@ -85,7 +87,7 @@ public class MateriaPrimaDAO {
 	
 	public void AlterarMateriaPrima(materiaPrima materiaPrima) {
 		
-		String sqlString = "update materiaprime set nome=?, descricao=?, origem=?, quantidade=? where id=?";
+		String sqlString = "update materiaprima set nome=?, descricao=?, origem=?, quantidade=? where id_materiaprima=?";
 		
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sqlString);
@@ -93,6 +95,7 @@ public class MateriaPrimaDAO {
 			stmt.setString(2, materiaPrima.getDescricao());
 			stmt.setString(3, materiaPrima.getOrigem());
 			stmt.setInt(4, materiaPrima.getQuantidade());
+			stmt.setInt(5, materiaPrima.getId());
 			stmt.execute();
 			stmt.close();
 			JOptionPane.showMessageDialog(null, "Dados Atualizados com sucesso!");
@@ -115,6 +118,44 @@ public class MateriaPrimaDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public List<materiaPrima> BuscarMateriaPrimaId(int id) {
+			
+			List<materiaPrima> materiaPrimas = new ArrayList<materiaPrima>();
+			
+			
+			String sql = "SELECT * FROM bellaflor.materiaprima where id_materiaprima="+id;
+			
+			try {
+				PreparedStatement stmt = this.connection.prepareStatement(sql);		
+				
+				ResultSet rs = stmt.executeQuery();
+				
+				if(rs.next()) {
+					
+					materiaPrima materiaPrima = new materiaPrima();
+					materiaPrima.setDescricao(rs.getString("descricao"));
+					materiaPrima.setNome(rs.getString("nome"));
+					materiaPrima.setOrigem(rs.getString("origem"));
+					materiaPrima.setId(rs.getInt("id_materiaprima"));
+					materiaPrima.setQuantidade(rs.getInt("quantidade"));
+					
+					materiaPrimas.add(materiaPrima);
+				}
+				rs.close();
+				stmt.close();
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(""+materiaPrimas);
+			return materiaPrimas;
+			
+			
+			
+		}
 
 
 }

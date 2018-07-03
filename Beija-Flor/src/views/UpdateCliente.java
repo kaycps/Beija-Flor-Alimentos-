@@ -222,8 +222,7 @@ public class UpdateCliente extends JFrame {
 	
 	public void editarCliente(cliente cliente) {
 		
-		EnderecoDAO eDao = new EnderecoDAO();
-		
+		EnderecoDAO eDao = new EnderecoDAO();		
 		
 		List<endereco> enderecos=eDao.BuscarEnderecoId(cliente.getId_endereco());
 		

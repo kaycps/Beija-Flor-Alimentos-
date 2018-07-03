@@ -56,7 +56,7 @@ public class ConsultarAgenda extends JFrame {
 	 * Create the frame.
 	 */
 	public ConsultarAgenda() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300, 278, 600, 422);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -157,6 +157,7 @@ public class ConsultarAgenda extends JFrame {
 				//enviando os dados para edição
 				ClienteDAO cd =new ClienteDAO();
 				cd.DeletarCliente(cliente);
+				
 				
 				dispose();
 				ConsultarAgenda consultarAgenda = new ConsultarAgenda();

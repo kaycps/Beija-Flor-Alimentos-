@@ -31,7 +31,7 @@ public class ConsultarFuncionario extends JFrame {
 	 * Create the frame.
 	 */
 	public ConsultarFuncionario() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(300, 278, 600, 422);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
