@@ -88,7 +88,7 @@ public class ClienteDAO {
 	
 	public void AlterarCliente(cliente cliente) {
 		
-		String sqlString = "update cliente set nome=?, telefone=?, cnpj=?, where id=?";
+		String sqlString = "update cliente set nome=?, telefone=?, cnpj=? where idcliente=?";
 		
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sqlString);
@@ -117,5 +117,22 @@ public class ClienteDAO {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public int buscarIdEndereço(int id) throws SQLException{
+		
+		int id_endereco=0;
+		String sqlString  = "select * from cliente where idcliente=? ";
+		
+		PreparedStatement	stmt = connection.prepareStatement(sqlString);
+		stmt.setInt(1,id);
+		
+		ResultSet rs = stmt.executeQuery();			
+		rs.next();
+		id_endereco=rs.getInt("id_endereco");
+		rs.close();
+		stmt.close();	
+		
+		return id_endereco;
 	}
 }

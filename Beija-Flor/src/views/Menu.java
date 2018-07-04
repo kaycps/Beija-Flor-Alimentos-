@@ -18,8 +18,11 @@ import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JMonthChooser;
 
 import Classes.funcionario;
+import Classes.login;
 import Classes.materiaPrima;
+import Classes.venda;
 import DataBase.MateriaPrimaDAO;
+import DataBase.VendaDAO;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
@@ -35,13 +38,15 @@ import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JButton;
 
 public class Menu extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField tfCredito;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	VendaDAO total = new VendaDAO();
 
 	/**
 	 * Launch the application.
@@ -63,6 +68,7 @@ public class Menu extends JFrame {
 	 * Create the frame.
 	 */
 	public Menu() {
+		
 		FormFuncionario funcionario = new FormFuncionario();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,6 +88,16 @@ public class Menu extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon(Menu.class.getResource("/logo.png")));
 		lblNewLabel_1.setBounds(180, 140, 185, 137);
 		panel.add(lblNewLabel_1);
+		
+		JButton btnAtualizar = new JButton("Atualizar");
+		btnAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				creditoTotal();
+			}
+		});
+		btnAtualizar.setBounds(228, 288, 89, 23);
+		panel.add(btnAtualizar);
 		
 		
 		JPanel panel_1 = new JPanel();
@@ -224,20 +240,20 @@ public class Menu extends JFrame {
 		mntmNewMenuItem_13.setBounds(0, 297, 201, 22);
 		panel_1.add(mntmNewMenuItem_13);
 		mntmNewMenuItem.addActionListener(new ActionListener() {
-			FormVenda venda = new FormVenda();
+			
 			public void actionPerformed(ActionEvent arg0) {
-				
+				FormVenda venda = new FormVenda();
 				venda.setVisible(true);
 			}
 		});
 		
 		
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBounds(246, 104, 86, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tfCredito = new JTextField();
+		tfCredito.setEditable(false);
+		tfCredito.setBounds(246, 104, 86, 20);
+		contentPane.add(tfCredito);
+		tfCredito.setColumns(10);
 		
 		textField_1 = new JTextField();
 		textField_1.setEditable(false);
@@ -282,5 +298,14 @@ public class Menu extends JFrame {
 		lblSaldo.setFont(new Font("Arial", Font.BOLD, 13));
 		lblSaldo.setBounds(678, 34, 46, 14);
 		contentPane.add(lblSaldo);
+		
+		creditoTotal();
+		
+		
+	}
+	
+	public void creditoTotal() {
+		
+		tfCredito.setText("R$"+Double.toString(total.credito()));
 	}
 }

@@ -13,6 +13,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import org.omg.CORBA.PRIVATE_MEMBER;
+
 import Classes.login;
 import DataBase.LogimDAO;
 
@@ -21,6 +23,7 @@ import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
@@ -28,7 +31,7 @@ public class Login extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
-
+	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -83,17 +86,19 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {				
 						
 				char [] senha = passwordField.getPassword();
-						login login = new login();
+						
 						LogimDAO logimDAO = new LogimDAO();
+						
+						login login = new login();
 						
 						login.setSenha(String.valueOf(senha));
 						login.setUsuario(textField.getText());					
-						
 						
 						if(logimDAO.VerificarLogin(login)==true) {
 							Menu nMenu = new Menu();
 							nMenu.setVisible(true);				
 							dispose();
+							System.out.println(""+login.getId());
 						}else {
 							JOptionPane.showMessageDialog(null, "Usuario não cadastrado");
 						}							
@@ -123,4 +128,6 @@ public class Login extends JFrame {
 		passwordField.setBounds(454, 291, 86, 20);
 		contentPane.add(passwordField);
 	}
+	
+	
 }

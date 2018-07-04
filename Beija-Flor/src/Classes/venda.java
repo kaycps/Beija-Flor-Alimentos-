@@ -3,11 +3,14 @@ package Classes;
 public class venda {
 	
 	private int id;
+	private int id_login;
+	private int id_cliente;
+	private int id_EnderecoCliente;	
 	private String dataVenda;
-	private String id_produto;
-	private String destino;
-	private double quantidade;
-	private double total;
+	private int id_produto;	
+	private int quantidade;
+	private double valorUnitario;
+	
 	
 	
 	
@@ -23,29 +26,43 @@ public class venda {
 	public void setDataVenda(String dataVenda) {
 		this.dataVenda = dataVenda;
 	}
-	public String getId_produto() {
+	public int getId_produto() {
 		return id_produto;
 	}
-	public void setId_produto(String id_produto) {
+	public void setId_produto(int id_produto) {
 		this.id_produto = id_produto;
 	}
-	public String getDestino() {
-		return destino;
-	}
-	public void setDestino(String destino) {
-		this.destino = destino;
-	}
+	
 	public double getQuantidade() {
 		return quantidade;
 	}
-	public void setQuantidade(double quantidade) {
+	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-	public double getTotal() {
-		return total;
+	
+	public int getId_login() {
+		return id_login;
 	}
-	public void setTotal(double total) {
-		this.total = total;
+	public void setId_login(int id_login) {
+		this.id_login = id_login;
+	}
+	public int getId_cliente() {
+		return id_cliente;
+	}
+	public void setId_cliente(int id_cliente) {
+		this.id_cliente = id_cliente;
+	}
+	public int getId_EnderecoCliente() {
+		return id_EnderecoCliente;
+	}
+	public void setId_EnderecoCliente(int id_EnderecoCliente) {
+		this.id_EnderecoCliente = id_EnderecoCliente;
+	}
+	public double getValorUnitario() {
+		return valorUnitario;
+	}
+	public void setValorUnitario(double valorUnitario) {
+		this.valorUnitario = valorUnitario;
 	}
 	
 	

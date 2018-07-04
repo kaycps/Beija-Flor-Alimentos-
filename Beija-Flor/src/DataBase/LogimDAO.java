@@ -37,7 +37,7 @@ public Boolean VerificarLogin(login login)  {
 			if(rs.next()) {
 				
 				if(rs.getString("usuario").equals(login.getUsuario())&&rs.getString("senha").equals(login.getSenha())) {
-					
+					login.setId(rs.getInt("id_login"));
 					rs.close();
 					stmt.close();
 					flag = true;
@@ -53,5 +53,26 @@ public Boolean VerificarLogin(login login)  {
 		
 		
 	}
+
+public int buscarIdCliente(login login) throws SQLException {
+	
+	String sqlString  = "select * from login where usuario=? ";
+	
+	PreparedStatement	stmt = connection.prepareStatement(sqlString);
+	stmt.setString(1,login.getUsuario());	
+	
+	ResultSet rs = stmt.executeQuery();	
+	
+	rs.next();		
+	
+	login.setId(rs.getInt("id_login"));
+	rs.close();
+	stmt.close();	
+	
+	return login.getId();
+	
+}
+
+	
 
 }

@@ -143,6 +143,14 @@ public class UpdateManufaturado extends JFrame {
 		contentPane.add(label_6);
 		
 		JButton button = new JButton("Cancelar");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				ConsultarMateriaPrima consultarMateriaPrima = new ConsultarMateriaPrima();
+				consultarMateriaPrima.setVisible(true);
+				dispose();
+			}
+		});
 		button.setBounds(173, 298, 92, 23);
 		contentPane.add(button);
 		
@@ -158,8 +166,8 @@ public class UpdateManufaturado extends JFrame {
 				manufaturado.setQuantidade(Integer.valueOf(tfQuantidade.getText()));
 				manufaturado.setValor(Double.parseDouble(tfValor.getText()));
 				
-				String validade = ""+cbDiaV+"-"+cbMesV+"-"+cbAnoV;
-				String fabricacao = ""+cbDiaF+"-"+cbMesF+"-"+cbAnoF;
+				String validade =""+cbDiaV.getSelectedItem()+"-"+cbMesV.getSelectedItem()+"-"+cbAnoV.getSelectedItem();
+				String fabricacao =""+cbDiaF.getSelectedItem()+"-"+cbMesF.getSelectedItem()+"-"+cbAnoF.getSelectedItem();
 				
 				manufaturado.setDataFabricacao(fabricacao);
 				manufaturado.setValidade(validade);

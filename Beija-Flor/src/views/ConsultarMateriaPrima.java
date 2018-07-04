@@ -134,6 +134,7 @@ public class ConsultarMateriaPrima extends JFrame {
 				uM.editarMateriaPrima(materiaPrima);
 				uM.setVisible(true);
 				dispose();
+				
 
 			}
 		});

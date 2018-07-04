@@ -22,6 +22,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class UpdateMateriaPrima extends JFrame {
 
@@ -94,9 +95,10 @@ public class UpdateMateriaPrima extends JFrame {
 		label_3.setBounds(319, 82, 63, 14);
 		contentPane.add(label_3);
 		
-		
-		taDescricao.setBounds(320, 100, 254, 103);
-		contentPane.add(taDescricao);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(320, 100, 254, 103);
+		contentPane.add(scrollPane);
+		scrollPane.setViewportView(taDescricao);
 		
 		JLabel label_4 = new JLabel("Materia-Prima");
 		label_4.setForeground(new Color(32, 178, 170));
@@ -136,16 +138,18 @@ public class UpdateMateriaPrima extends JFrame {
 		btCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				ConsultarMateriaPrima consultarMateriaPrima = new ConsultarMateriaPrima();
+				consultarMateriaPrima.setVisible(true);
 				dispose();
 			}
 		});
 		btCancelar.setBounds(175, 283, 100, 23);
 		contentPane.add(btCancelar);
 		
-		JLabel label_6 = new JLabel("Nome\r\n");
-		label_6.setFont(new Font("Tahoma", Font.BOLD, 13));
-		label_6.setBounds(40, 82, 46, 14);
-		contentPane.add(label_6);
+		JLabel ID = new JLabel("ID");
+		ID.setFont(new Font("Tahoma", Font.BOLD, 13));
+		ID.setBounds(40, 82, 46, 14);
+		contentPane.add(ID);
 		
 		tfID = new JTextField();
 		tfID.setEditable(false);

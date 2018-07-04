@@ -25,7 +25,7 @@ public class ManufaturadoDao {
 	public void AdicionarManufaturado(produtoManufaturado manufaturado)  {
 			
 			String sql = "insert into manufaturado" + 
-			"(datavalidade,quantidade,valor,datafabricacao,id_tipo)" + "values(?,?,?,?,?)";	
+			"(datavalidade,quantidade,valor,datafabricacao,tipo)" + "values(?,?,?,?,?)";	
 			 
 		
 			try {		
@@ -70,7 +70,7 @@ public class ManufaturadoDao {
 					manufaturado.setValidade(rs.getString("datavalidade"));
 					manufaturado.setQuantidade(rs.getInt("quantidade"));
 					manufaturado.setValor(rs.getDouble("valor"));
-					manufaturado.setTipo(rs.getInt("id_tipo"));
+					manufaturado.setTipo(rs.getInt("tipo"));
 					manufaturado.setId(rs.getInt("id_manufaturado"));
 					
 					manufaturados.add(manufaturado);					
@@ -88,7 +88,7 @@ public class ManufaturadoDao {
 		
 		public void AlterarManufaturado(produtoManufaturado manufaturado) {
 			
-			String sqlString = "update manufaturado set datavalidade=?, quantidade=?, valor=?, datafabricacao=?, id_tipo=?, where id_manufaturado=?";
+			String sqlString = "update manufaturado set datavalidade=?, quantidade=?, valor=?, datafabricacao=?, tipo=? where id_manufaturado=?";
 			
 			try {
 				PreparedStatement stmt = connection.prepareStatement(sqlString);

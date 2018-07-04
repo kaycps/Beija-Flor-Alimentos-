@@ -24,8 +24,8 @@ public class VendaDAO {
 		
 		public void AdicionarVenda(venda venda)  {
 			
-			String sql = "insert into venda" + 
-			"(nome,telefone,cnpj,tipo,id_endereco)" + "values(?,?,?,?,?)";	
+			String sql = "insert into vendas" + 
+			"(data,valor,quantidade,id_login,id_cliente,id_endereco,id_produto)" + "values(?,?,?,?,?,?,?)";	
 			 
 		
 			try {		
@@ -35,17 +35,20 @@ public class VendaDAO {
 				
 				
 				//seta os valores
-				stmt.setString(1, cliente.getNome());
-				stmt.setString(2, cliente.getTelefone());
-				stmt.setString(3, cliente.getCnpj());
-				stmt.setString(4, cliente.getTipo());
-				stmt.setInt(5, eDao.TotalEnderecos());
+				stmt.setString(1, venda.getDataVenda());
+				stmt.setDouble(2, venda.getValorUnitario());
+				stmt.setInt(3, (int) venda.getQuantidade());
+				stmt.setInt(4, venda.getId_login());
+				stmt.setInt(5, venda.getId_cliente());
+				stmt.setInt(6, venda.getId_EnderecoCliente());
+				stmt.setInt(7, venda.getId_produto());
+				
 				stmt.execute();
 				
 				
 				//executa				
 				stmt.close();			
-				JOptionPane.showMessageDialog(null, "Cadatrado com sucesso!");
+				JOptionPane.showMessageDialog(null, "Venda Cadatrada com sucesso!");
 				
 				
 			} catch (SQLException e) {
@@ -55,67 +58,27 @@ public class VendaDAO {
 			
 			
 		}
-		
-		public  java.util.List<cliente> BuscarContato() {
+		public double credito() {
+			
+			double total = 0;
+			String sql = "SELECT (SUM(valor) * SUM(quantidade)) as Resultado FROM vendas;";
 			try {
-				
-				java.util.List<cliente> clientes = new ArrayList<cliente>();
-				PreparedStatement stmt = this.connection.prepareStatement("select * from cliente");
-			    ResultSet rs = stmt.executeQuery();
-				
-				while(rs.next()) {
-					
-					cliente cliente = new cliente();
-					cliente.setNome(rs.getString("nome"));
-					cliente.setTelefone(rs.getString("telefone"));
-					cliente.setId(rs.getInt("idcliente"));
-					cliente.setId_endereco(rs.getInt("id_endereco"));
-					cliente.setCnpj(rs.getString("cnpj"));
-					
-					clientes.add(cliente);
-				}		    
+				PreparedStatement	stmt = connection.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery(sql);
+				rs.next();
+				total = rs.getDouble("Resultado");
 				rs.close();
 				stmt.close();
-				System.out.println("dados retornados!");
-				return clientes;
+				
 				
 			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}		
-			
-		}
-		
-		public void AlterarCliente(materiaPrima materiaPrima) {
-			
-			String sqlString = "update materiaprima set nome=?, telefone=?, cnpj=?, where id=?";
-			
-			try {
-				PreparedStatement stmt = connection.prepareStatement(sqlString);
-				stmt.setString(1, cliente.getNome());
-				stmt.setString(2, cliente.getTelefone());
-				stmt.setString(3, cliente.getCnpj());
-				stmt.setInt(4, cliente.getId());
-				stmt.execute();
-				stmt.close();
-				JOptionPane.showMessageDialog(null, "Dados Atualizados com sucesso!");
-				
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		}
-		
-		public void DeletarCliente (materiaPrima materiaPrima) {
 			
-			try {
-				PreparedStatement stmt  = connection.prepareStatement("delete from materiaprima where id_materiaprima=?");
-				stmt.setInt(1, materiaPrima.getId());
-				stmt.execute();
-				stmt.close();
-				
-				JOptionPane.showMessageDialog(null, "Materia prima deletada com sucesso!");
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
+			return total;
 		}
-
+	
+		
+		
 }

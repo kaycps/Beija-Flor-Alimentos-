@@ -175,6 +175,7 @@ public class UpdateCliente extends JFrame {
 				cliente.setNome(tfNome.getText());
 				cliente.setTelefone(tfTelefone.getText());
 				cliente.setId(Integer.parseInt(tfId.getText()));
+				cliente.setCnpj(tfCNPJ.getText());
 				ClienteDAO dao = new ClienteDAO();
 				
 				dao.AlterarCliente(cliente);
@@ -190,6 +191,7 @@ public class UpdateCliente extends JFrame {
 		contentPane.add(btnAtualizar);
 		
 		JLabel lblNewLabel = new JLabel("ID");
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 13));
 		lblNewLabel.setBounds(24, 114, 46, 14);
 		contentPane.add(lblNewLabel);
 		
